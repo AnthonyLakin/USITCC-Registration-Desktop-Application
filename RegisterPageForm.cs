@@ -14,6 +14,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 using System.Xml.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Diagnostics;
 
 namespace USITCC_Registration
 {
@@ -24,11 +26,12 @@ namespace USITCC_Registration
             InitializeComponent();
         }
 
+        public string filepath = @"conference_events_feed_2023_07_17.xml";
         private void RegisterPageForm_Load(object sender, EventArgs e)
         {
             try
             {
-                var filepath = @"conference_events_feed_2023_07_17.xml";
+                
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filepath);
                 XmlNode root = doc.DocumentElement;
@@ -48,7 +51,7 @@ namespace USITCC_Registration
                             }
                         }
                     Console.Read();
-                    for (int i = 0; i < usernameList.Count; i++)
+                    for (int i = 0; i < allTeams.Count; i++)
                     {
                         XmlNode username = doc.CreateElement("username");
                         username.InnerText = usernameList[i];
@@ -84,6 +87,61 @@ namespace USITCC_Registration
                 MessageBox.Show(error.Message);
             }
             submitButton.Enabled = true;
+        }
+
+
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            string firtname = firstNameInput.Text.ToLower();
+            string lastname = lastNameInput.Text.ToLower();
+            string school = schoolInput.Text;
+            string contest = contestInput.Text;
+
+            //Console.WriteLine(ScanXML(firtname, lastname, school, contest));
+            string values = ScanXML(firtname, lastname, school, contest);
+            string[] newVal = values.Split(' ');
+
+            var path = @"MyTest.txt";
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine("Username: " + newVal[0]);
+                sw.WriteLine("Password: " + newVal[1]);
+                sw.Close();
+            }
+            //string strCmdText = "/c copy " + path + " LPT1";
+            Process.Start("printJob.ps1");
+        }
+
+        private string ScanXML(string firtname, string lastname, string school, string contest)
+        {
+            
+            var filepath = @"conference_events_feed_2023_07_17.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filepath);
+            XmlNode root = doc.DocumentElement;
+            XmlNodeList allTeams = root.SelectNodes("team");
+            int count = 0;
+            foreach (XmlNode student in allTeams)
+            {
+                if (contest == student.SelectSingleNode("contest").InnerText && school == student.SelectSingleNode("school").InnerText)
+                {
+                    foreach (XmlNode contestant in student.SelectNodes("contestant"))
+                    {
+
+                        if (contestant.InnerText.ToLower() == (firtname + " " + lastname))
+                        {
+                            return student.SelectSingleNode("username").InnerText + " " + student.SelectSingleNode("password").InnerText;
+                        }
+                    }
+                } count++;
+
+            }
+            if (count == allTeams.Count)
+            {
+                return "false";
+            }
+            throw new NotImplementedException();
         }
     }
 }

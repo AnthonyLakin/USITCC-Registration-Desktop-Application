@@ -83,6 +83,7 @@
             this.submitButton.TabIndex = 0;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // resetButton
             // 
@@ -247,7 +248,7 @@
             this.contestInput.FormattingEnabled = true;
             this.contestInput.IntegralHeight = false;
             this.contestInput.ItemHeight = 38;
-            this.contestInput.Location = new System.Drawing.Point(3, 35);
+            this.contestInput.Location = new System.Drawing.Point(3, 30);
             this.contestInput.Name = "contestInput";
             this.contestInput.Size = new System.Drawing.Size(551, 46);
             this.contestInput.TabIndex = 1;
