@@ -61,7 +61,7 @@ namespace USITCC_Registration
                     int probability = 0;
                     for (int i = 0; i < removeSpace.Length; i++)
                     {
-                        if (concatName[i] == removeSpace[i])
+                        if (concatName.Contains(removeSpace[i]))
                         {
                             probability++;
                         }
@@ -78,7 +78,7 @@ namespace USITCC_Registration
                     int probability = 0;
                     for (int i = 0; i < concatName.Length; i++)
                     {
-                        if (concatName[i] == removeSpace[i])
+                        if (removeSpace.Contains(concatName[i]))
                         {
                             probability++;
                         }
@@ -92,7 +92,8 @@ namespace USITCC_Registration
 
                 
             }
-            if (isGreater !=  0)
+            //Console.WriteLine(Convert.ToDouble(isGreater)/Convert.ToDouble(winner.Length));
+            if (Convert.ToDouble(isGreater) / Convert.ToDouble(winner.Length) > 0.6)
             {
                 return winner;
             } else
@@ -136,7 +137,12 @@ namespace USITCC_Registration
                     {
                         string[] bothNames = FindCorrection(possibleStudents).Split(' ');
                         firstNameInput.Text = bothNames[0];
+                        firstNameInput.Focus();
+                        firstNameInput.SelectAll();
+                        System.Threading.Thread.Sleep(700);
                         lastNameInput.Text = bothNames[1];
+                        lastNameInput.Focus();
+                        lastNameInput.SelectAll();
                         return "true";
 
                     }

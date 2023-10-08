@@ -249,7 +249,7 @@
             this.contestInput.FormattingEnabled = true;
             this.contestInput.IntegralHeight = false;
             this.contestInput.ItemHeight = 38;
-            this.contestInput.Location = new System.Drawing.Point(3, 30);
+            this.contestInput.Location = new System.Drawing.Point(3, 35);
             this.contestInput.Name = "contestInput";
             this.contestInput.Size = new System.Drawing.Size(551, 46);
             this.contestInput.TabIndex = 1;
