@@ -38,7 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.firstNameInput = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.heading1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -95,6 +95,7 @@
             this.resetButton.TabIndex = 1;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -172,7 +173,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.heading1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(48, 63);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -183,19 +184,19 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(566, 63);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // heading1
+            // titleLabel
             // 
-            this.heading1.AutoSize = true;
-            this.heading1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.heading1.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.heading1.ForeColor = System.Drawing.Color.White;
-            this.heading1.Location = new System.Drawing.Point(0, 0);
-            this.heading1.Margin = new System.Windows.Forms.Padding(0);
-            this.heading1.Name = "heading1";
-            this.heading1.Size = new System.Drawing.Size(460, 63);
-            this.heading1.TabIndex = 0;
-            this.heading1.Text = "Please Register";
-            this.heading1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.titleLabel.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.White;
+            this.titleLabel.Location = new System.Drawing.Point(0, 0);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(460, 63);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "Please Register";
+            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
@@ -345,7 +346,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox firstNameInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label heading1;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
