@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendToPrinter.cs" />
     <Compile Include="StudentRegistration.cs" />
     <EmbeddedResource Include="RegisterPageForm.resx">
       <DependentUpon>RegisterPageForm.cs</DependentUpon>

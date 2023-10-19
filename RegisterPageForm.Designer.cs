@@ -39,7 +39,7 @@
             this.firstNameInput = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.formWrapper = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.contestInput = new System.Windows.Forms.ComboBox();
@@ -51,7 +51,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.formWrapper.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
@@ -198,21 +198,20 @@
             this.titleLabel.Text = "Please Register";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel1
+            // formWrapper
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.tableLayoutPanel6);
-            this.panel1.Controls.Add(this.tableLayoutPanel4);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this.tableLayoutPanel2);
-            this.panel1.Controls.Add(this.tableLayoutPanel5);
-            this.panel1.Controls.Add(this.tableLayoutPanel3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(40, 60);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(671, 657);
-            this.panel1.TabIndex = 5;
+            this.formWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.formWrapper.Controls.Add(this.tableLayoutPanel6);
+            this.formWrapper.Controls.Add(this.tableLayoutPanel4);
+            this.formWrapper.Controls.Add(this.label4);
+            this.formWrapper.Controls.Add(this.tableLayoutPanel1);
+            this.formWrapper.Controls.Add(this.tableLayoutPanel2);
+            this.formWrapper.Controls.Add(this.tableLayoutPanel5);
+            this.formWrapper.Controls.Add(this.tableLayoutPanel3);
+            this.formWrapper.Location = new System.Drawing.Point(40, 60);
+            this.formWrapper.Name = "formWrapper";
+            this.formWrapper.Size = new System.Drawing.Size(671, 657);
+            this.formWrapper.TabIndex = 5;
             // 
             // tableLayoutPanel6
             // 
@@ -244,12 +243,12 @@
             // 
             // contestInput
             // 
-            this.contestInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.contestInput.Dock = System.Windows.Forms.DockStyle.Top;
             this.contestInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.contestInput.FormattingEnabled = true;
             this.contestInput.IntegralHeight = false;
             this.contestInput.ItemHeight = 38;
-            this.contestInput.Location = new System.Drawing.Point(3, 35);
+            this.contestInput.Location = new System.Drawing.Point(3, 30);
             this.contestInput.Name = "contestInput";
             this.contestInput.Size = new System.Drawing.Size(551, 46);
             this.contestInput.TabIndex = 1;
@@ -311,13 +310,14 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(751, 777);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.formWrapper);
             this.Font = new System.Drawing.Font("Ebrima", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "RegisterPageForm";
             this.Padding = new System.Windows.Forms.Padding(40, 60, 40, 60);
             this.Text = "USITCC Registration";
             this.Load += new System.EventHandler(this.RegisterPageForm_Load);
+            this.Resize += new System.EventHandler(this.RegisterPageForm_Resize);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -325,7 +325,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.formWrapper.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -347,7 +347,7 @@
         private System.Windows.Forms.TextBox firstNameInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel formWrapper;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label3;
