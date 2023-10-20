@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace USITCC_Registration
 {
@@ -21,6 +25,21 @@ namespace USITCC_Registration
 
                     );
                 sw.Close();
+                try
+                {
+                    Process print = new Process();
+                    print.StartInfo = new ProcessStartInfo()
+                    {
+                        CreateNoWindow = true,
+                        Verb = "print",
+                        FileName = Directory.GetCurrentDirectory() + @"\logs\print_input\outputPrint.rtf",
+                    };
+                    print.Start();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }
