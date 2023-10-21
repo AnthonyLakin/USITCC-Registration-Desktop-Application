@@ -1,6 +1,6 @@
 ﻿namespace USITCC_Registration
 {
-    partial class RegisterPageForm
+    partial class AddUsersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.submitButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,14 +39,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
             this.formWrapper = new System.Windows.Forms.Panel();
+            this.overwriteButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.contestInput = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.schoolInput = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5.SuspendLayout();
+            this.lineBox = new System.Windows.Forms.Label();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,30 +55,14 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 4;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel5.Controls.Add(this.submitButton, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.resetButton, 2, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(52, 537);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(557, 57);
-            this.tableLayoutPanel5.TabIndex = 4;
-            // 
             // submitButton
             // 
-            this.submitButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.submitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.submitButton.Enabled = false;
-            this.submitButton.Location = new System.Drawing.Point(437, 6);
+            this.submitButton.Location = new System.Drawing.Point(474, 557);
             this.submitButton.Margin = new System.Windows.Forms.Padding(10, 6, 0, 6);
             this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(120, 45);
+            this.submitButton.Size = new System.Drawing.Size(140, 45);
             this.submitButton.TabIndex = 0;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
@@ -87,11 +70,11 @@
             // 
             // resetButton
             // 
-            this.resetButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.resetButton.Location = new System.Drawing.Point(296, 6);
+            this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetButton.Location = new System.Drawing.Point(332, 557);
             this.resetButton.Margin = new System.Windows.Forms.Padding(10, 6, 0, 6);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(131, 45);
+            this.resetButton.Size = new System.Drawing.Size(140, 45);
             this.resetButton.TabIndex = 1;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
@@ -109,7 +92,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(557, 67);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(562, 67);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // label2
@@ -130,8 +113,9 @@
             this.lastNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lastNameInput.Location = new System.Drawing.Point(3, 26);
             this.lastNameInput.Name = "lastNameInput";
-            this.lastNameInput.Size = new System.Drawing.Size(551, 46);
+            this.lastNameInput.Size = new System.Drawing.Size(556, 46);
             this.lastNameInput.TabIndex = 1;
+            this.lastNameInput.TextChanged += new System.EventHandler(this.formInputChange);
             // 
             // tableLayoutPanel2
             // 
@@ -145,7 +129,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(557, 67);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(562, 67);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // label1
@@ -166,22 +150,23 @@
             this.firstNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.firstNameInput.Location = new System.Drawing.Point(3, 26);
             this.firstNameInput.Name = "firstNameInput";
-            this.firstNameInput.Size = new System.Drawing.Size(551, 46);
+            this.firstNameInput.Size = new System.Drawing.Size(556, 46);
             this.firstNameInput.TabIndex = 1;
+            this.firstNameInput.TextChanged += new System.EventHandler(this.formInputChange);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(48, 63);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(52, 63);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.6802F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(566, 63);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(562, 63);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // titleLabel
@@ -201,17 +186,33 @@
             // formWrapper
             // 
             this.formWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.formWrapper.Controls.Add(this.overwriteButton);
+            this.formWrapper.Controls.Add(this.resetButton);
+            this.formWrapper.Controls.Add(this.submitButton);
             this.formWrapper.Controls.Add(this.tableLayoutPanel6);
             this.formWrapper.Controls.Add(this.tableLayoutPanel4);
-            this.formWrapper.Controls.Add(this.label4);
+            this.formWrapper.Controls.Add(this.lineBox);
             this.formWrapper.Controls.Add(this.tableLayoutPanel1);
             this.formWrapper.Controls.Add(this.tableLayoutPanel2);
-            this.formWrapper.Controls.Add(this.tableLayoutPanel5);
             this.formWrapper.Controls.Add(this.tableLayoutPanel3);
             this.formWrapper.Location = new System.Drawing.Point(40, 60);
             this.formWrapper.Name = "formWrapper";
             this.formWrapper.Size = new System.Drawing.Size(671, 657);
             this.formWrapper.TabIndex = 5;
+            // 
+            // overwriteButton
+            // 
+            this.overwriteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.overwriteButton.BackColor = System.Drawing.Color.Olive;
+            this.overwriteButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.overwriteButton.Location = new System.Drawing.Point(190, 557);
+            this.overwriteButton.Name = "overwriteButton";
+            this.overwriteButton.Size = new System.Drawing.Size(140, 45);
+            this.overwriteButton.TabIndex = 2;
+            this.overwriteButton.Text = "OVERWRITE";
+            this.overwriteButton.UseVisualStyleBackColor = false;
+            this.overwriteButton.Visible = false;
+            this.overwriteButton.Click += new System.EventHandler(this.overwriteButton_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -225,7 +226,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.75969F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.24031F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(557, 71);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(562, 71);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
             // label5
@@ -250,8 +251,9 @@
             this.contestInput.ItemHeight = 38;
             this.contestInput.Location = new System.Drawing.Point(3, 30);
             this.contestInput.Name = "contestInput";
-            this.contestInput.Size = new System.Drawing.Size(551, 46);
+            this.contestInput.Size = new System.Drawing.Size(556, 46);
             this.contestInput.TabIndex = 1;
+            this.contestInput.SelectedIndexChanged += new System.EventHandler(this.formInputChange);
             // 
             // tableLayoutPanel4
             // 
@@ -265,7 +267,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.75969F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.24031F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(557, 90);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(562, 90);
             this.tableLayoutPanel4.TabIndex = 5;
             // 
             // label3
@@ -290,18 +292,19 @@
             this.schoolInput.ItemHeight = 38;
             this.schoolInput.Location = new System.Drawing.Point(3, 30);
             this.schoolInput.Name = "schoolInput";
-            this.schoolInput.Size = new System.Drawing.Size(551, 46);
+            this.schoolInput.Size = new System.Drawing.Size(556, 46);
             this.schoolInput.TabIndex = 1;
+            this.schoolInput.SelectedIndexChanged += new System.EventHandler(this.formInputChange);
             // 
-            // label4
+            // lineBox
             // 
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(48, 126);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(565, 10);
-            this.label4.TabIndex = 5;
+            this.lineBox.BackColor = System.Drawing.Color.White;
+            this.lineBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lineBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lineBox.Location = new System.Drawing.Point(52, 126);
+            this.lineBox.Name = "lineBox";
+            this.lineBox.Size = new System.Drawing.Size(561, 10);
+            this.lineBox.TabIndex = 5;
             // 
             // RegisterPageForm
             // 
@@ -318,7 +321,6 @@
             this.Text = "USITCC Registration";
             this.Load += new System.EventHandler(this.RegisterPageForm_Load);
             this.Resize += new System.EventHandler(this.RegisterPageForm_Resize);
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -335,8 +337,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -348,13 +348,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel formWrapper;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lineBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox schoolInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox contestInput;
+        private System.Windows.Forms.Button overwriteButton;
     }
 }
 

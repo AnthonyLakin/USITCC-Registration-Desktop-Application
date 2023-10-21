@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USITCC Registration", "USITCC Registration.csproj", "{6BEA7648-024C-42A5-9EB9-BFE422F78770}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USITCC Add Users", "USITCC Add Users.csproj", "{6BEA7648-024C-42A5-9EB9-BFE422F78770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

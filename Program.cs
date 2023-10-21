@@ -16,7 +16,7 @@ namespace USITCC_Registration
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegisterPageForm());
+            Application.Run(new AddUsersForm());
         }
     }
 }

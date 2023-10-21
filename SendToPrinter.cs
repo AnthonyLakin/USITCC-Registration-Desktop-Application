@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Runtime.Remoting.Contexts;
 
 namespace USITCC_Registration
 {
     public static class SendToPrinter
     {
         
-        public static void RichTextParser(string username, string password)
+        public static void RichTextParser(string firstname, string lastname, string school, string contest, string username, string password)
         {
-            Console.WriteLine(username + " " + password);
             var path = @"logs/print_input/outputPrint.rtf";
             using (StreamWriter sw = File.CreateText(path))
             {
@@ -35,6 +35,35 @@ namespace USITCC_Registration
                         FileName = Directory.GetCurrentDirectory() + @"\logs\print_input\outputPrint.rtf",
                     };
                     print.Start();
+                    //Console.WriteLine(Directory.GetCurrentDirectory() + @"\logs\print_input\outputPrint.rtf");
+
+                    try
+                    {
+                        var csvPath = "logs/receipt_logs.csv";
+                        if (!File.Exists(csvPath))
+                        {
+                            using (StreamWriter file = new StreamWriter(csvPath, true))
+                            {
+
+                                file.WriteLine("Date,Time,First Name,Last Name,School,Contest,Username,Password");
+
+                            }
+                        }
+                        using (StreamWriter file = new StreamWriter(csvPath, true))
+                        {
+                            char cm = ',';
+
+                            file.WriteLine(DateTime.Now.ToShortDateString() + cm + DateTime.Now.ToLongTimeString() + cm + firstname + cm + lastname + cm + school + cm + contest + cm + username + cm + password);
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Please close receipt_logs.csv file!");
+                    }
+
+
+
                 }
                 catch (Exception ex)
                 {
@@ -42,5 +71,6 @@ namespace USITCC_Registration
                 }
             }
         }
+
     }
 }
