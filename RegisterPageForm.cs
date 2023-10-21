@@ -27,7 +27,7 @@ namespace USITCC_Registration
         }
         string xmlFilePath;
 
-        private XmlDocument grabXML()
+        public XmlDocument grabXML()
         {
             xmlFilePath = @"crucial_Files/xml_Data/conference_events_feed_2023_07_17.xml";
             XmlDocument doc = new XmlDocument();
@@ -35,6 +35,8 @@ namespace USITCC_Registration
             return doc;
         }
 
+        List<string> usernameList = new List<string>();
+        List<string> passwordList = new List<string>();
         private void RegisterPageForm_Load(object sender, EventArgs e)
         {
             try
@@ -42,22 +44,20 @@ namespace USITCC_Registration
                 XmlDocument doc = grabXML();
                 XmlNode root = doc.DocumentElement;
                 XmlNodeList allTeams = root.SelectNodes("team");
-
+                using (StreamReader reader = new StreamReader(@"crucial_Files/moodleUsersCSV/moodleUsers.csv"))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] values = line.Split(',');
+                        usernameList.Add(values[0]);
+                        passwordList.Add(values[1]);
+                    }
+                }
                 if (allTeams[0].SelectSingleNode("username") == null)
                 {
-                    List<string> usernameList = new List<string>();
-                    List<string> passwordList = new List<string>();
-                    using (StreamReader reader = new StreamReader(@"crucial_Files/moodleUsersCSV/moodleUsers.csv"))
-                    {
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            string[] values = line.Split(',');
-                            usernameList.Add(values[0]);
-                            passwordList.Add(values[1]);
-                        }
-                    }
-                    Console.Read();
+                    
+                    
                     for (int i = 0; i < allTeams.Count; i++)
                     {
                         XmlNode username = doc.CreateElement("username");
@@ -67,7 +67,6 @@ namespace USITCC_Registration
                         allTeams[i].AppendChild(username);
                         allTeams[i].AppendChild(password);
                     }
-                    Console.WriteLine(xmlFilePath);
                     doc.Save(xmlFilePath);
                 }
                 HashSet<string> schoolNames = new HashSet<string>();
@@ -121,9 +120,13 @@ namespace USITCC_Registration
             contestInput.SelectedIndex = -1;
             System.Threading.Thread.Sleep(400);
             titleLabel.Text = "Please Register";
-            
+            titleLabel.ForeColor = Color.White;
+            lineBox.BackColor = Color.White;
+            submitButton.Enabled = true;
+            resetButton.Enabled = true;
+
         }
-        
+
 
         private string FindCorrection(List<string> studentNames)
         {
@@ -196,7 +199,7 @@ namespace USITCC_Registration
                 {
                     foreach (XmlNode contestant in student.SelectNodes("contestant"))
                     {
-                        if (contestant.InnerText.ToLower() == (firstname + " " + lastname))
+                        if (contestant.InnerText.ToLower() == (firstname.ToLower() + " " + lastname.ToLower()))
                         {
                             return student.SelectSingleNode("username").InnerText + " " + student.SelectSingleNode("password").InnerText;
                         }
@@ -240,21 +243,16 @@ namespace USITCC_Registration
         private void resetButton_Click(object sender, EventArgs e)
         {
             resetContent();
-            submitButton.Enabled = true;
-            resetButton.Enabled = true;
         }
 
 
         // End of Template
 
-        
-
-        
-
+                
         private async void submitButton_Click(object sender, EventArgs e)
         {
-            string firstname = firstNameInput.Text.ToLower();
-            string lastname = lastNameInput.Text.ToLower();
+            string firstname = firstNameInput.Text;
+            string lastname = lastNameInput.Text;
             string school = schoolInput.Text;
             string contest = contestInput.Text;
 
@@ -270,41 +268,7 @@ namespace USITCC_Registration
                 {
                     titleLabel.Text = "Printing...";
                     newVal = values.Split(' ');
-                    SendToPrinter.RichTextParser(newVal[0], newVal[1]);
-                    /*var path = @"crucial_Files/output.txt";
-                    using (StreamWriter sw = File.CreateText(path))
-                    {
-                        sw.WriteLine("Username: " + newVal[0]);
-                        sw.WriteLine("Password: " + newVal[1]);
-                        sw.Close();
-                    }*/
-                    try
-                    {
-                        var csvPath = "logs/receipt_logs.csv";
-                        if (!File.Exists(csvPath))
-                        {
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(csvPath, true))
-                            {
-
-                                file.WriteLine("Date,Time,First Name,Last Name,School,Contest,Username,Password");
-
-                            }
-                        }
-                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(csvPath, true))
-                        {
-                            char cm = ',';
-
-                            file.WriteLine(DateTime.Now.ToShortDateString() + cm + DateTime.Now.ToLongTimeString() + cm + firstname + cm + lastname + cm + school + cm + contest + cm + newVal[0] + cm + newVal[1]);
-
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Please close receipt_logs.csv file!");
-                    }
-
-                    //Process.Start(new ProcessStartInfo("Powershell.exe", "printJob.ps1") { UseShellExecute = true });
-
+                    SendToPrinter.RichTextParser(firstNameInput.Text, lastNameInput.Text, schoolInput.Text, contestInput.Text, newVal[0], newVal[1]);
                     submitButton.Enabled = false;
                     resetButton.Enabled = false;
                     await Task.Delay(400);
@@ -314,7 +278,11 @@ namespace USITCC_Registration
                 }
                 else if (values == "false")
                 {
-                    MessageBox.Show(firstNameInput.Text + " " + lastNameInput.Text + " of " + schoolInput.Text + " is not registered to compete in " + contestInput.Text, "User Not Registered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    titleLabel.Text = "User Not Registered";
+                    titleLabel.ForeColor = Color.Khaki;
+                    lineBox.BackColor = Color.Khaki;
+                    submitButton.Enabled = false;
+                    MessageBox.Show(firstNameInput.Text + " " + lastNameInput.Text + " of " + schoolInput.Text + " is not registered to compete in " + contestInput.Text + "\n\nYou can still compete but must add yourself/team to the registrar.", "User Not Registered", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -326,6 +294,15 @@ namespace USITCC_Registration
            formWrapper.Top = (this.ClientSize.Height - formWrapper.Height) / 2;
         }
 
+        private void formInputChange(object sender, EventArgs e)
+        {
+            titleLabel.Text = "Please Register";
+            titleLabel.ForeColor = Color.White;
+            lineBox.BackColor = Color.White;
+            submitButton.Visible = true;
+            submitButton.Enabled = true;
+            resetButton.Enabled = true;
+        }
 
     }
 }
