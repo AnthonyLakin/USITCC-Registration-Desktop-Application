@@ -56,8 +56,6 @@ namespace USITCC_Registration
                 }
                 if (allTeams[0].SelectSingleNode("username") == null)
                 {
-                    
-                    
                     for (int i = 0; i < allTeams.Count; i++)
                     {
                         XmlNode username = doc.CreateElement("username");
@@ -95,8 +93,23 @@ namespace USITCC_Registration
 
         // Templates
 
-       
+        public void ChangeTitle(bool isNormal, string text)
+        {
+            
+            if (isNormal)
+            {
+                titleLabel.Text = text;
+                titleLabel.ForeColor = Color.White;
+                lineBox.BackColor = Color.White;
+            } else
+            {
+                titleLabel.Text = text;
+                titleLabel.ForeColor = Color.Khaki;
+                lineBox.BackColor = Color.Khaki;
+            }
 
+        }
+       
         private void resetContent()
         {
             submitButton.Enabled = false;
@@ -110,6 +123,14 @@ namespace USITCC_Registration
             lastNameInput.SelectAll();
             System.Threading.Thread.Sleep(timer);
             lastNameInput.Text = string.Empty;
+            user2FirstNameInput.Focus();
+            user2FirstNameInput.SelectAll();
+            System.Threading.Thread.Sleep(timer);
+            user2FirstNameInput.Text = string.Empty;
+            user2LastNameInput.Focus();
+            user2LastNameInput.SelectAll();
+            System.Threading.Thread.Sleep(timer);
+            user2LastNameInput.Text = string.Empty;
             schoolInput.Focus();
             schoolInput.SelectAll();
             System.Threading.Thread.Sleep(timer);
@@ -119,11 +140,9 @@ namespace USITCC_Registration
             System.Threading.Thread.Sleep(timer);
             contestInput.SelectedIndex = -1;
             System.Threading.Thread.Sleep(400);
-            titleLabel.Text = "Please Register";
-            titleLabel.ForeColor = Color.White;
-            lineBox.BackColor = Color.White;
-            overwriteButton.Visible = false;
-            overwriteButton.Enabled = false;
+            ChangeTitle(true, "Add to Registrar");
+            confirmButton.Visible = false;
+            confirmButton.Enabled = false;
             submitButton.Visible = true;
             submitButton.Enabled = true;
             resetButton.Enabled = true;
@@ -131,71 +150,11 @@ namespace USITCC_Registration
         }
 
 
-        private string FindCorrection(List<string> studentNames)
-        {
-            string concatName = firstNameInput.Text + lastNameInput.Text;
-            int isGreater = 0;
-            string winner = "This user does not exits";
-
-
-            foreach (string student in studentNames)
-            {
-                string removeSpace = student.Replace(" ", string.Empty);
-                
-                if (concatName.Length >= removeSpace.Length)
-                {
-                    int probability = 0;
-                    for (int i = 0; i < removeSpace.Length; i++)
-                    {
-                        if (concatName.Contains(removeSpace[i]))
-                        {
-                            probability++;
-                        }
-                    }
-                    if (probability > isGreater)
-                    {
-                        isGreater = probability;
-                        winner = student;
-                    }
-                    
-                } 
-                else
-                {
-                    int probability = 0;
-                    for (int i = 0; i < concatName.Length; i++)
-                    {
-                        if (removeSpace.Contains(concatName[i]))
-                        {
-                            probability++;
-                        }
-                    }
-                    if (probability > isGreater)
-                    {
-                        isGreater = probability;
-                        winner = student;
-                    }
-                }
-
-                
-            }
-            if (Convert.ToDouble(isGreater) / Convert.ToDouble(winner.Length) > 0.5)
-            {
-                return winner;
-            } else
-            {
-                return "false";
-            }
-            
-            
-        }
-
         private string ScanXML(string firstname, string lastname, string school, string contest)
         {
             XmlDocument doc = grabXML();
             XmlNode root = doc.DocumentElement;
             XmlNodeList allTeams = root.SelectNodes("team");
-            int count = 0;
-            List<string> possibleStudents = new List<string>();
             foreach (XmlNode student in allTeams)
             {
                 if (contest == student.SelectSingleNode("contest").InnerText && school == student.SelectSingleNode("school").InnerText)
@@ -206,51 +165,18 @@ namespace USITCC_Registration
                         {
                             return student.SelectSingleNode("username").InnerText + " " + student.SelectSingleNode("password").InnerText;
                         }
-                        possibleStudents.Add(contestant.InnerText);
                     }
                 }
-                count++;
             }
-            if (count == allTeams.Count)
-            { 
-                if (FindCorrection(possibleStudents) != "false")
-                {
-                    DialogResult prompt = MessageBox.Show('\u0022' + firstNameInput.Text + " " + lastNameInput.Text + '\u0022' + " does not exist, did you mean " + '\u0022' + FindCorrection(possibleStudents) + '\u0022' + " instead?", "Can't find student", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (prompt == DialogResult.Yes)
-                    {
-                        string[] bothNames = FindCorrection(possibleStudents).Split(' ');
-                        firstNameInput.Text = bothNames[0];
-                        firstNameInput.Focus();
-                        firstNameInput.SelectAll();
-                        System.Threading.Thread.Sleep(700);
-                        lastNameInput.Text = bothNames[1];
-                        lastNameInput.Focus();
-                        lastNameInput.SelectAll();
-                        return "true";
 
-                    }
-                    else
-                    {
-                        return "false";
-                    }
-                }
-                else
-                {
-                    return "false";
-                }
-                
-                
-            }
-            throw new NotImplementedException();
+            return "false";
         }
         private void resetButton_Click(object sender, EventArgs e)
         {
             resetContent();
         }
 
-
         // End of Template
-
                 
         private async void submitButton_Click(object sender, EventArgs e)
         {
@@ -271,7 +197,7 @@ namespace USITCC_Registration
                 {
                     titleLabel.Text = "Printing...";
                     newVal = values.Split(' ');
-                    SendToPrinter.RichTextParser(firstNameInput.Text, lastNameInput.Text, schoolInput.Text, contestInput.Text, newVal[0], newVal[1]);
+                    SendToPrinter.RichTextParser(firstname, lastname, user2FirstNameInput.Text, user2LastNameInput.Text, school, contest, newVal[0], newVal[1]);
                     submitButton.Enabled = false;
                     resetButton.Enabled = false;
                     await Task.Delay(400);
@@ -281,15 +207,12 @@ namespace USITCC_Registration
                 }
                 else if (values == "false")
                 {
-                    titleLabel.Text = "User Not Registered";
-                    titleLabel.ForeColor = Color.Olive;
-                    lineBox.BackColor = Color.Olive;
-                    overwriteButton.Location = new Point(474, 557);
-                    overwriteButton.Visible = true;
-                    overwriteButton.Enabled = true;
+                    ChangeTitle(false, "Please Confirm Info");
                     submitButton.Visible = false;
                     submitButton.Enabled = false;
-                    MessageBox.Show(firstNameInput.Text + " " + lastNameInput.Text + " of " + schoolInput.Text + " is not registered to compete in " + contestInput.Text + "\n\nYou can still compete but must click OVERWRITE button.", "User Not Registered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    confirmButton.Location = new Point(470, 698);
+                    confirmButton.Visible = true;
+                    confirmButton.Enabled = true;
                 }
 
             }
@@ -303,17 +226,15 @@ namespace USITCC_Registration
 
         private void formInputChange(object sender, EventArgs e)
         {
-            titleLabel.Text = "Please Register";
-            titleLabel.ForeColor = Color.White;
-            lineBox.BackColor = Color.White;
-            overwriteButton.Visible = false;
-            overwriteButton.Enabled = false;
+            ChangeTitle(true, "Please Register");
+            confirmButton.Visible = false;
+            confirmButton.Enabled = false;
             submitButton.Visible = true;
             submitButton.Enabled = true;
             resetButton.Enabled = true;
         }
 
-        private void overwriteButton_Click(object sender, EventArgs e)
+        private void appendUsers()
         {
             XmlDocument doc = grabXML();
             XmlNode root = doc.DocumentElement;
@@ -336,10 +257,13 @@ namespace USITCC_Registration
             team.AppendChild(username);
             team.AppendChild(password);
             doc.Save(xmlFilePath);
-            SendToPrinter.RichTextParser(firstNameInput.Text, lastNameInput.Text, schoolInput.Text, contestInput.Text, usernameList[allTeams.Count], passwordList[allTeams.Count]);
+            SendToPrinter.RichTextParser(firstNameInput.Text, lastNameInput.Text, user2FirstNameInput.Text, user2LastNameInput.Text, schoolInput.Text, contestInput.Text, usernameList[allTeams.Count], passwordList[allTeams.Count]);
             resetContent();
-            
+        }
 
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            appendUsers();
         }
     }
 }

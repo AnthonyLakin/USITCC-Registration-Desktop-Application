@@ -39,7 +39,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
             this.formWrapper = new System.Windows.Forms.Panel();
-            this.overwriteButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.user2FirstNameInput = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.user2LastNameInput = new System.Windows.Forms.TextBox();
+            this.confirmButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.contestInput = new System.Windows.Forms.ComboBox();
@@ -47,20 +53,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.schoolInput = new System.Windows.Forms.ComboBox();
             this.lineBox = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.formWrapper.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // submitButton
@@ -111,7 +111,7 @@
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(215, 28);
+            this.label2.Size = new System.Drawing.Size(317, 28);
             this.label2.TabIndex = 0;
             this.label2.Text = "Contestant 1: Last Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -121,9 +121,8 @@
             this.lastNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lastNameInput.Location = new System.Drawing.Point(3, 31);
             this.lastNameInput.Name = "lastNameInput";
-            this.lastNameInput.Size = new System.Drawing.Size(550, 33);
+            this.lastNameInput.Size = new System.Drawing.Size(550, 46);
             this.lastNameInput.TabIndex = 1;
-            this.lastNameInput.TextChanged += new System.EventHandler(this.formInputChange);
             // 
             // tableLayoutPanel2
             // 
@@ -149,7 +148,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(217, 28);
+            this.label1.Size = new System.Drawing.Size(321, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Contestant 1: First Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,9 +158,8 @@
             this.firstNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.firstNameInput.Location = new System.Drawing.Point(3, 31);
             this.firstNameInput.Name = "firstNameInput";
-            this.firstNameInput.Size = new System.Drawing.Size(550, 33);
+            this.firstNameInput.Size = new System.Drawing.Size(550, 46);
             this.firstNameInput.TabIndex = 1;
-            this.firstNameInput.TextChanged += new System.EventHandler(this.formInputChange);
             // 
             // tableLayoutPanel1
             // 
@@ -187,7 +185,7 @@
             this.titleLabel.Location = new System.Drawing.Point(0, 0);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(333, 63);
+            this.titleLabel.Size = new System.Drawing.Size(488, 63);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Add To Registrar";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -197,7 +195,7 @@
             this.formWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.formWrapper.Controls.Add(this.tableLayoutPanel7);
             this.formWrapper.Controls.Add(this.tableLayoutPanel5);
-            this.formWrapper.Controls.Add(this.overwriteButton);
+            this.formWrapper.Controls.Add(this.confirmButton);
             this.formWrapper.Controls.Add(this.resetButton);
             this.formWrapper.Controls.Add(this.submitButton);
             this.formWrapper.Controls.Add(this.tableLayoutPanel6);
@@ -211,19 +209,91 @@
             this.formWrapper.Size = new System.Drawing.Size(671, 788);
             this.formWrapper.TabIndex = 5;
             // 
-            // overwriteButton
+            // tableLayoutPanel7
             // 
-            this.overwriteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.overwriteButton.BackColor = System.Drawing.Color.Olive;
-            this.overwriteButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.overwriteButton.Location = new System.Drawing.Point(186, 698);
-            this.overwriteButton.Name = "overwriteButton";
-            this.overwriteButton.Size = new System.Drawing.Size(140, 45);
-            this.overwriteButton.TabIndex = 2;
-            this.overwriteButton.Text = "OVERWRITE";
-            this.overwriteButton.UseVisualStyleBackColor = false;
-            this.overwriteButton.Visible = false;
-            this.overwriteButton.Click += new System.EventHandler(this.overwriteButton_Click);
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.user2FirstNameInput, 0, 1);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(55, 335);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(556, 77);
+            this.tableLayoutPanel7.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(321, 28);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Contestant 2: First Name";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // user2FirstNameInput
+            // 
+            this.user2FirstNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.user2FirstNameInput.Location = new System.Drawing.Point(3, 31);
+            this.user2FirstNameInput.Name = "user2FirstNameInput";
+            this.user2FirstNameInput.Size = new System.Drawing.Size(550, 46);
+            this.user2FirstNameInput.TabIndex = 1;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.user2LastNameInput, 0, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(55, 414);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(556, 77);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(317, 28);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Contestant 2: Last Name";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // user2LastNameInput
+            // 
+            this.user2LastNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.user2LastNameInput.Location = new System.Drawing.Point(3, 31);
+            this.user2LastNameInput.Name = "user2LastNameInput";
+            this.user2LastNameInput.Size = new System.Drawing.Size(550, 46);
+            this.user2LastNameInput.TabIndex = 1;
+            // 
+            // confirmButton
+            // 
+            this.confirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.confirmButton.BackColor = System.Drawing.Color.Olive;
+            this.confirmButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.confirmButton.Location = new System.Drawing.Point(186, 698);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(140, 45);
+            this.confirmButton.TabIndex = 2;
+            this.confirmButton.Text = "CONFIRM";
+            this.confirmButton.UseVisualStyleBackColor = false;
+            this.confirmButton.Visible = false;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -248,7 +318,7 @@
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 29);
+            this.label5.Size = new System.Drawing.Size(111, 29);
             this.label5.TabIndex = 0;
             this.label5.Text = "Contest";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -259,12 +329,11 @@
             this.contestInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.contestInput.FormattingEnabled = true;
             this.contestInput.IntegralHeight = false;
-            this.contestInput.ItemHeight = 25;
+            this.contestInput.ItemHeight = 38;
             this.contestInput.Location = new System.Drawing.Point(3, 32);
             this.contestInput.Name = "contestInput";
-            this.contestInput.Size = new System.Drawing.Size(550, 33);
+            this.contestInput.Size = new System.Drawing.Size(550, 46);
             this.contestInput.TabIndex = 1;
-            this.contestInput.SelectedIndexChanged += new System.EventHandler(this.formInputChange);
             // 
             // tableLayoutPanel4
             // 
@@ -289,7 +358,7 @@
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 22);
+            this.label3.Size = new System.Drawing.Size(100, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "School";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -300,12 +369,11 @@
             this.schoolInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.schoolInput.FormattingEnabled = true;
             this.schoolInput.IntegralHeight = false;
-            this.schoolInput.ItemHeight = 25;
+            this.schoolInput.ItemHeight = 38;
             this.schoolInput.Location = new System.Drawing.Point(3, 25);
             this.schoolInput.Name = "schoolInput";
-            this.schoolInput.Size = new System.Drawing.Size(550, 33);
+            this.schoolInput.Size = new System.Drawing.Size(550, 46);
             this.schoolInput.TabIndex = 1;
-            this.schoolInput.SelectedIndexChanged += new System.EventHandler(this.formInputChange);
             // 
             // lineBox
             // 
@@ -317,81 +385,9 @@
             this.lineBox.Size = new System.Drawing.Size(561, 10);
             this.lineBox.TabIndex = 5;
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBox1, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(55, 414);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 3;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(556, 77);
-            this.tableLayoutPanel5.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(215, 28);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Contestant 2: Last Name";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(3, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(550, 33);
-            this.textBox1.TabIndex = 1;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.textBox2, 0, 1);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(55, 335);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 3;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(556, 77);
-            this.tableLayoutPanel7.TabIndex = 3;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(0, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(217, 28);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Contestant 2: First Name";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(3, 31);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(550, 33);
-            this.textBox2.TabIndex = 1;
-            // 
             // AddUsersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 38F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Gray;
@@ -411,14 +407,14 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.formWrapper.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -442,13 +438,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox contestInput;
-        private System.Windows.Forms.Button overwriteButton;
+        private System.Windows.Forms.Button confirmButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox user2FirstNameInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox user2LastNameInput;
     }
 }
 

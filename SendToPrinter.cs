@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.Remoting.Contexts;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 
 namespace USITCC_Registration
 {
     public static class SendToPrinter
     {
-        
-        public static void RichTextParser(string firstname, string lastname, string school, string contest, string username, string password)
+
+        public static void RichTextParser(string firstname, string lastname, string user2Firstname, string user2Lastname, string school, string contest, string username, string password)
         {
             var path = @"logs/print_input/outputPrint.rtf";
             using (StreamWriter sw = File.CreateText(path))
@@ -45,7 +46,7 @@ namespace USITCC_Registration
                             using (StreamWriter file = new StreamWriter(csvPath, true))
                             {
 
-                                file.WriteLine("Date,Time,First Name,Last Name,School,Contest,Username,Password");
+                                file.WriteLine("Date,Time,Contestant 1 Name,Contestant 2 Name,School,Contest,Username,Password");
 
                             }
                         }
@@ -53,13 +54,15 @@ namespace USITCC_Registration
                         {
                             char cm = ',';
 
-                            file.WriteLine(DateTime.Now.ToShortDateString() + cm + DateTime.Now.ToLongTimeString() + cm + firstname + cm + lastname + cm + school + cm + contest + cm + username + cm + password);
+                            file.WriteLine(DateTime.Now.ToShortDateString() + cm + DateTime.Now.ToLongTimeString() + cm + (firstname + " " + lastname) + cm + (user2Firstname + " " + user2Lastname) + cm + school + cm + contest + cm + username + cm + password);
 
                         }
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Please close receipt_logs.csv file!");
+                        AddUsersForm item = new AddUsersForm();
+                        item.ChangeTitle(false, "Cannot Save");
+                        MessageBox.Show("Cannot save form, Please close receipt_logs.csv file!");
                     }
 
 
