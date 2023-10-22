@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.Remoting.Contexts;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
+using System.Xml;
 
 namespace USITCC_Registration
 {
-    public static class SendToPrinter
+     partial class AddUsersForm
     {
 
-        public static void RichTextParser(string firstname, string lastname, string user2Firstname, string user2Lastname, string school, string contest, string username, string password)
+        public void RichTextParser(string firstname, string lastname, string user2Firstname, string user2Lastname, string school, string contest, string username, string password)
         {
             var path = @"logs/print_input/outputPrint.rtf";
             using (StreamWriter sw = File.CreateText(path))
@@ -26,17 +27,8 @@ namespace USITCC_Registration
 
                     );
                 sw.Close();
-                try
-                {
-                    Process print = new Process();
-                    print.StartInfo = new ProcessStartInfo()
-                    {
-                        CreateNoWindow = true,
-                        Verb = "print",
-                        FileName = Directory.GetCurrentDirectory() + @"\logs\print_input\outputPrint.rtf",
-                    };
-                    print.Start();
-                    //Console.WriteLine(Directory.GetCurrentDirectory() + @"\logs\print_input\outputPrint.rtf");
+                
+                    
 
                     try
                     {
@@ -57,23 +49,40 @@ namespace USITCC_Registration
                             file.WriteLine(DateTime.Now.ToShortDateString() + cm + DateTime.Now.ToLongTimeString() + cm + (firstname + " " + lastname) + cm + (user2Firstname + " " + user2Lastname) + cm + school + cm + contest + cm + username + cm + password);
 
                         }
+                        try
+                        {
+                            Process print = new Process();
+                            print.StartInfo = new ProcessStartInfo()
+                            {
+                                CreateNoWindow = true,
+                                Verb = "print",
+                                //WindowStyle = ProcessWindowStyle.Hidden,
+                                FileName = Directory.GetCurrentDirectory() + @"\logs\print_input\outputPrint.rtf",
+                            };
+                            print.Start();
+                        
+                        AppendUsers();
+                        resetContent();
+                        
+                        
+
+                    } catch (Exception message)
+                        {
+                            MessageBox.Show(message.ToString());
+                        }
                     }
                     catch (Exception)
                     {
-                        AddUsersForm item = new AddUsersForm();
-                        item.ChangeTitle(false, "Cannot Save");
-                        MessageBox.Show("Cannot save form, Please close receipt_logs.csv file!");
+                    ChangeTitle(false, "Cannot Save Form!");
+                    titleLabel.ForeColor = Color.Red;
+                    lineBox.BackColor = Color.Red;
+                    MessageBox.Show("Error cannot save form inputs and print receipt. Please close 'receipt_logs.csv' file and try again.");
                     }
 
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
             }
         }
+
+
 
     }
 }

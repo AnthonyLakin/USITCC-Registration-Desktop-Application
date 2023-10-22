@@ -110,7 +110,7 @@ namespace USITCC_Registration
 
         }
        
-        private void resetContent()
+        public void resetContent()
         {
             submitButton.Enabled = false;
             resetButton.Enabled = false;
@@ -163,6 +163,7 @@ namespace USITCC_Registration
                     {
                         if (contestant.InnerText.ToLower() == (firstname.ToLower() + " " + lastname.ToLower()))
                         {
+                            Console.WriteLine(contestant);
                             return student.SelectSingleNode("username").InnerText + " " + student.SelectSingleNode("password").InnerText;
                         }
                     }
@@ -178,7 +179,7 @@ namespace USITCC_Registration
 
         // End of Template
                 
-        private async void submitButton_Click(object sender, EventArgs e)
+        private void submitButton_Click(object sender, EventArgs e)
         {
             string firstname = firstNameInput.Text;
             string lastname = lastNameInput.Text;
@@ -197,13 +198,7 @@ namespace USITCC_Registration
                 {
                     titleLabel.Text = "Printing...";
                     newVal = values.Split(' ');
-                    SendToPrinter.RichTextParser(firstname, lastname, user2FirstNameInput.Text, user2LastNameInput.Text, school, contest, newVal[0], newVal[1]);
-                    submitButton.Enabled = false;
-                    resetButton.Enabled = false;
-                    await Task.Delay(400);
-                    resetContent();
-                    submitButton.Enabled = true;
-                    resetButton.Enabled = true;
+                    RichTextParser(firstname, lastname, user2FirstNameInput.Text, user2LastNameInput.Text, school, contest, newVal[0], newVal[1]);
                 }
                 else if (values == "false")
                 {
@@ -234,7 +229,7 @@ namespace USITCC_Registration
             resetButton.Enabled = true;
         }
 
-        private void appendUsers()
+        public  void AppendUsers()
         {
             XmlDocument doc = grabXML();
             XmlNode root = doc.DocumentElement;
@@ -257,13 +252,41 @@ namespace USITCC_Registration
             team.AppendChild(username);
             team.AppendChild(password);
             doc.Save(xmlFilePath);
-            SendToPrinter.RichTextParser(firstNameInput.Text, lastNameInput.Text, user2FirstNameInput.Text, user2LastNameInput.Text, schoolInput.Text, contestInput.Text, usernameList[allTeams.Count], passwordList[allTeams.Count]);
-            resetContent();
+            Console.WriteLine("active");
+            
         }
+
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            appendUsers();
+            string firstname = firstNameInput.Text;
+            string lastname = lastNameInput.Text;
+            string school = schoolInput.Text;
+            string contest = contestInput.Text;
+
+            if (firstname == string.Empty || lastname == string.Empty || school == string.Empty || contest == string.Empty)
+            {
+                MessageBox.Show("Please fill out all boxes!", "Empty box detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string values = ScanXML(firstname, lastname, school, contest);
+                string[] newVal;
+                if (values != "false" && values != "true")
+                {
+                    titleLabel.Text = "Printing...";
+                    newVal = values.Split(' ');
+                    RichTextParser(firstname, lastname, user2FirstNameInput.Text, user2LastNameInput.Text, school, contest, newVal[0], newVal[1]);
+                }
+                else if (values == "false")
+                {
+                    XmlDocument doc = grabXML();
+                    XmlNode root = doc.DocumentElement;
+                    XmlNodeList allTeams = root.SelectNodes("team");
+                    RichTextParser(firstNameInput.Text, lastNameInput.Text, user2FirstNameInput.Text, user2LastNameInput.Text, schoolInput.Text, contestInput.Text, usernameList[allTeams.Count], passwordList[allTeams.Count]);
+                }
+
+            }
         }
     }
 }
