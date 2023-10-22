@@ -1,4 +1,4 @@
-# USITCC Registration
+# USITCC Registration Desktop Application
 
 Developing an application for the A-BITS (Association of Business Information Students) president to streamline the registration process for USITCC (United States Information Technology Collegiate Competition) is a significant and innovative endeavor. USITCC, a national organization that orchestrates IT competitions spanning diverse fields such as security, analytics, hardware, and more, greatly benefits from the application's features. This application, built using WinForms C# .NET Framework, is a powerful tool that manages the entire registration process, revolutionizing how students participate in the competition.
 
