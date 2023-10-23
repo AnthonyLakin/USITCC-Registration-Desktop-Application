@@ -26,10 +26,13 @@ namespace USITCC_Registration
             InitializeComponent();
         }
         string xmlFilePath;
+        string csvFilePath;
 
         public XmlDocument grabXML()
         {
-            xmlFilePath = @"crucial_Files/xml_Data/conference_events_feed_2023_07_17.xml";
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\crucial_Files\xml_Data");
+            FileInfo fi = di.GetFiles()[0];
+            xmlFilePath = fi.FullName;
             XmlDocument doc = new XmlDocument();
             doc.Load(xmlFilePath);
             return doc;
@@ -44,7 +47,10 @@ namespace USITCC_Registration
                 XmlDocument doc = grabXML();
                 XmlNode root = doc.DocumentElement;
                 XmlNodeList allTeams = root.SelectNodes("team");
-                using (StreamReader reader = new StreamReader(@"crucial_Files/moodleUsersCSV/moodleUsers.csv"))
+                DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\crucial_Files\moodleUsersCSV");
+                FileInfo fi = di.GetFiles()[0];
+                csvFilePath = fi.FullName;
+                using (StreamReader reader = new StreamReader(csvFilePath))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
@@ -95,13 +101,14 @@ namespace USITCC_Registration
 
         public void ChangeTitle(bool isNormal, string text)
         {
-            
+
             if (isNormal)
             {
                 titleLabel.Text = text;
                 titleLabel.ForeColor = Color.White;
                 lineBox.BackColor = Color.White;
-            } else
+            }
+            else
             {
                 titleLabel.Text = text;
                 titleLabel.ForeColor = Color.Khaki;
@@ -109,7 +116,7 @@ namespace USITCC_Registration
             }
 
         }
-       
+
         public void resetContent()
         {
             submitButton.Enabled = false;
@@ -149,36 +156,13 @@ namespace USITCC_Registration
 
         }
 
-
-        private string ScanXML(string firstname, string lastname, string school, string contest)
-        {
-            XmlDocument doc = grabXML();
-            XmlNode root = doc.DocumentElement;
-            XmlNodeList allTeams = root.SelectNodes("team");
-            foreach (XmlNode student in allTeams)
-            {
-                if (contest == student.SelectSingleNode("contest").InnerText && school == student.SelectSingleNode("school").InnerText)
-                {
-                    foreach (XmlNode contestant in student.SelectNodes("contestant"))
-                    {
-                        if (contestant.InnerText.ToLower() == (firstname.ToLower() + " " + lastname.ToLower()))
-                        {
-                            Console.WriteLine(contestant);
-                            return student.SelectSingleNode("username").InnerText + " " + student.SelectSingleNode("password").InnerText;
-                        }
-                    }
-                }
-            }
-
-            return "false";
-        }
         private void resetButton_Click(object sender, EventArgs e)
         {
             resetContent();
         }
 
         // End of Template
-                
+
         private void submitButton_Click(object sender, EventArgs e)
         {
             string firstname = firstNameInput.Text;
@@ -188,35 +172,25 @@ namespace USITCC_Registration
 
             if (firstname == string.Empty || lastname == string.Empty || school == string.Empty || contest == string.Empty)
             {
-                MessageBox.Show("Please fill out all boxes!", "Empty box detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill required boxes!", "Empty box detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                string values = ScanXML(firstname, lastname, school, contest);
-                string[] newVal;
-                if (values != "false" && values != "true")
-                {
-                    titleLabel.Text = "Printing...";
-                    newVal = values.Split(' ');
-                    RichTextParser(firstname, lastname, user2FirstNameInput.Text, user2LastNameInput.Text, school, contest, newVal[0], newVal[1]);
-                }
-                else if (values == "false")
-                {
-                    ChangeTitle(false, "Please Confirm Info");
-                    submitButton.Visible = false;
-                    submitButton.Enabled = false;
-                    confirmButton.Location = new Point(470, 698);
-                    confirmButton.Visible = true;
-                    confirmButton.Enabled = true;
-                }
+
+                ChangeTitle(false, "Please Confirm Info");
+                submitButton.Visible = false;
+                submitButton.Enabled = false;
+                confirmButton.Location = new Point(470, 698);
+                confirmButton.Visible = true;
+                confirmButton.Enabled = true;
 
             }
         }
 
         private void RegisterPageForm_Resize(object sender, EventArgs e)
         {
-           formWrapper.Left = (this.ClientSize.Width - formWrapper.Width) / 2;
-           formWrapper.Top = (this.ClientSize.Height - formWrapper.Height) / 2;
+            formWrapper.Left = (this.ClientSize.Width - formWrapper.Width) / 2;
+            formWrapper.Top = (this.ClientSize.Height - formWrapper.Height) / 2;
         }
 
         private void formInputChange(object sender, EventArgs e)
@@ -229,7 +203,7 @@ namespace USITCC_Registration
             resetButton.Enabled = true;
         }
 
-        public  void AppendUsers()
+        public void AppendUsers()
         {
             XmlDocument doc = grabXML();
             XmlNode root = doc.DocumentElement;
@@ -253,9 +227,8 @@ namespace USITCC_Registration
             team.AppendChild(password);
             doc.Save(xmlFilePath);
             Console.WriteLine("active");
-            
-        }
 
+        }
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
@@ -266,25 +239,15 @@ namespace USITCC_Registration
 
             if (firstname == string.Empty || lastname == string.Empty || school == string.Empty || contest == string.Empty)
             {
-                MessageBox.Show("Please fill out all boxes!", "Empty box detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill required boxes!", "Empty box detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                string values = ScanXML(firstname, lastname, school, contest);
-                string[] newVal;
-                if (values != "false" && values != "true")
-                {
-                    titleLabel.Text = "Printing...";
-                    newVal = values.Split(' ');
-                    RichTextParser(firstname, lastname, user2FirstNameInput.Text, user2LastNameInput.Text, school, contest, newVal[0], newVal[1]);
-                }
-                else if (values == "false")
-                {
-                    XmlDocument doc = grabXML();
-                    XmlNode root = doc.DocumentElement;
-                    XmlNodeList allTeams = root.SelectNodes("team");
-                    RichTextParser(firstNameInput.Text, lastNameInput.Text, user2FirstNameInput.Text, user2LastNameInput.Text, schoolInput.Text, contestInput.Text, usernameList[allTeams.Count], passwordList[allTeams.Count]);
-                }
+
+                XmlDocument doc = grabXML();
+                XmlNode root = doc.DocumentElement;
+                XmlNodeList allTeams = root.SelectNodes("team");
+                RichTextParser(firstNameInput.Text, lastNameInput.Text, user2FirstNameInput.Text, user2LastNameInput.Text, schoolInput.Text, contestInput.Text, usernameList[allTeams.Count], passwordList[allTeams.Count]);
 
             }
         }

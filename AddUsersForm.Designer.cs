@@ -111,9 +111,9 @@
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(317, 28);
+            this.label2.Size = new System.Drawing.Size(337, 28);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Contestant 1: Last Name";
+            this.label2.Text = "Contestant 1: Last Name *";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lastNameInput
@@ -148,9 +148,9 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(321, 28);
+            this.label1.Size = new System.Drawing.Size(341, 28);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Contestant 1: First Name";
+            this.label1.Text = "Contestant 1: First Name *";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // firstNameInput
@@ -318,9 +318,9 @@
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 29);
+            this.label5.Size = new System.Drawing.Size(131, 29);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Contest";
+            this.label5.Text = "Contest *";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // contestInput
@@ -358,9 +358,9 @@
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 22);
+            this.label3.Size = new System.Drawing.Size(120, 22);
             this.label3.TabIndex = 0;
-            this.label3.Text = "School";
+            this.label3.Text = "School *";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // schoolInput
